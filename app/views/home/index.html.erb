@@ -1,7 +1,19 @@
-<h1>Home#index</h1>
-<p>Find me in app/views/home/index.html.erb</p>
+<h1>Stocks</h1>
 
-<%= stock = StockQuote::Stock.logo("tsla") %>
+<%= form_tag root_path, :method => 'POST' do %>
+    <%= text_field_tag 'ticker', nil, placeholder: 'Enter Ticker Symbol', size: 50 %>
+    <%= submit_tag 'Lookup' %>
+<% end %>
 
-<img src="<%= stock.url %>">
-<%= stock.url %>
+<br/> 
+
+<% if @stock %>
+    <%= @stock.company_name %> <br/>
+    $<%= @stock.latest_price %>
+<% elsif @empty %>
+    <%= @empty %>
+<% end %>
+
+<% if @error %>
+    <%= @error %>
+<% end %>

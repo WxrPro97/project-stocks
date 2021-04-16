@@ -1,24 +1,10 @@
-# README
+# Stocks Ruby on Rails Application
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## Description
+This is my first Ruby on Rails application for a stock market app.
 
-Things you may want to cover:
+## Author
+Sandupa Mohottige
+National College of Ireland
+BSc (Honours) in Computing - 4th Year - Software Development
 
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...

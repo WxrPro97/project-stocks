@@ -1,8 +1,10 @@
 <br/>
+<%# Custom error message view for existing devise messages %>
+<%# Messages are looped %>
 <% flash.each do |name, msg| %>
-    <div class="alert alert-danger alert-dismissable" role="alert">
-        <button class="close" data-dismiss="alert">
-            <small><sup>X<sup><small>
+    <div class="alert alert-danger alert-dismissable fade show" role="alert">
+        <button class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
         </button>
         <%= content_tag(:div, msg) %>
     </div>

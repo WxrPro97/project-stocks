@@ -1,8 +1,8 @@
 <h1>Stocks</h1>
 
 <%= form_tag root_path, :method => 'POST' do %>
-    <%= text_field_tag 'ticker', nil, placeholder: 'Enter Ticker Symbol', size: 50 %>
-    <%= submit_tag 'Lookup' %>
+    <%= text_field_tag 'symbol', nil, placeholder: 'Enter Stock Symbol', size: 50 %>
+    <%= submit_tag 'Search' %>
 <% end %>
 
 <br/> 

@@ -1,6 +1,12 @@
 class StocksController < ApplicationController
   before_action :set_stock, only: %i[ show edit update destroy ]
 
+  # Check the correct user
+  before_action :valid_user, only: [:edit, :update, :destroy]
+
+  # Authenticate for logged in user only
+  before_action :authenticate_user!
+
   # GET /stocks or /stocks.json
   def index
     @stocks = Stock.all
@@ -54,6 +60,13 @@ class StocksController < ApplicationController
       format.html { redirect_to stocks_url, notice: "Stock was successfully destroyed." }
       format.json { head :no_content }
     end
+  end
+
+  # Allow only the logged in user to make changes to the items they hold
+  def valid_user
+    # current_user is a devise helper
+    @symbol = current_user.stocks.find_by(id: params[:id])
+    redirect_to stocks_path, notice: "Only the valid user can edit the stock" if @symbol.nil?
   end
 
   private

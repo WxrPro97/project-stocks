@@ -9,6 +9,8 @@
       <strong><%= @symbol.company_name %></strong> <br/>
     </div>
       <div class="card-body">
+        <% @logo = StockQuote::Stock.logo(@stock.symbol)%>
+        <img src="<%= @logo.url %>"><br/><br/>
         Symbol: <%= @symbol.symbol %> <br/>
         Real-Time Price: <%= @symbol.iex_realtime_price %> <br/> 
         <%# Format numbers to 2 decimal places and seperate with comma %>

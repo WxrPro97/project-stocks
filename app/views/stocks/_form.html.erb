@@ -12,15 +12,17 @@
   <% end %>
 
   <div class="field">
-    <%= form.label :symbol %>
-    <%= form.text_field :symbol %>
+    Enter <%= form.label :symbol %>
+    <%= form.text_field :symbol, class: 'form-control' %>
   </div>
 
   <div class="field">
     <%= form.number_field :user_id, value: current_user.id, type: :hidden %>
   </div>
 
+  <br/>
+
   <div class="actions">
-    <%= form.submit %>
+    <%= form.submit class: 'btn btn-primary' %>
   </div>
 <% end %>

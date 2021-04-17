@@ -1,7 +1,7 @@
 <h1>Stocks</h1>
 
-<table>
-  <thead>
+<table class="table table-bordered table-hover">
+  <thead class="thead-dark">
     <tr>
       <th>Company</th>
       <th>Symbol</th>
@@ -15,28 +15,29 @@
     <%# Filter stock saved by the logged in user %>
       <% if stock.user_id == current_user.id %>
 
-      <%# Check if user input is empty %>
-      <% if stock.symbol == '' %>
-        <% @nothing = 'N/A' %>
-      <% elsif stock.symbol %>
         <%# Pass user input into stocks api and store results %>
         <% @symbol = StockQuote::Stock.quote(stock.symbol) %>
 
-        <%# If stock value doesn't exist then return error %>
-        <% if !stock.symbol %>
-            <% @error = 'N/A' %>
-        <% end%>
-      <% end %>
+        <%# This error handling doesn't work due to bad api response %>
+        <% if !@symbol %>
+          <tr>
+            <td><%= link_to 'Error', stock %></td>
+            <td><%= stock.symbol %></td>
+            <td>N/A</td>
+            <td><%= link_to 'Edit', edit_stock_path(stock), class: 'btn btn-warning' %></td>
+            <td><%= link_to 'Delete', stock, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger' %></td>
+          </tr>
+        <% else %>
+          <tr>
+            <td><%= link_to @symbol.company_name, stock %></td>
+            <td><%= @symbol.symbol %></td>
+            <%# Format numbers to 2 decimal places and seperate with comma %>
+            <td>$<%= number_with_precision(@symbol.latest_price, :precision => 2, :delimiter => ',') %></td>
+            <td><%= link_to 'Edit', edit_stock_path(stock), class: 'btn btn-warning' %></td>
+            <td><%= link_to 'Delete', stock, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger' %></td>
+          </tr>
+        <% end %>     
 
-        <tr>
-          <td><%= @symbol.company_name %></td>
-          <td><%= @symbol.symbol %></td>
-          <%# Format numbers to 2 decimal places and seperate with comma %>
-          <td>$<%= number_with_precision(@symbol.latest_price, :precision => 2, :delimiter => ',') %></td>
-          <td><%= link_to 'Show', stock %></td>
-          <td><%= link_to 'Edit', edit_stock_path(stock) %></td>
-          <td><%= link_to 'Destroy', stock, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-        </tr>
       <% end %>
     <% end %>
   </tbody>
@@ -44,4 +45,4 @@
 
 <br>
 
-<%= link_to 'New Stock', new_stock_path %>
+<%= link_to 'New Stock', new_stock_path, class: 'btn btn-primary' %>

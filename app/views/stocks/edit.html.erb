@@ -1,6 +1,14 @@
-<h1>Editing Stock</h1>
+<div class="card">
+    <div class="card-header">
+        <h1>Edit Stock Entry</h1>
+    </div>
 
-<%= render 'form', stock: @stock %>
+    <div class="card-body">
+        <%= render 'form', stock: @stock %>
 
-<%= link_to 'Show', @stock %> |
-<%= link_to 'Back', stocks_path %>
+        <br/>
+
+        <%= link_to 'Show', @stock, class: 'btn btn-success' %>
+        <%= link_to 'Back', stocks_path, class: 'btn btn-secondary' %>
+    </div>
+</div>

@@ -10,12 +10,9 @@ class HomeController < ApplicationController
       @stock = StockQuote::Stock.quote(params[:symbol])
 
       # If stock value doesn't exist then return error
-      if !@stock
-          @error = 'Stock symbol doesnt exist!'
-      end
+      @error = 'Stock symbol doesnt exist!' unless @stock
     end
   end
 
-  def about
-  end
+  def about; end
 end
